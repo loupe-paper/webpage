@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Loupe: End-to-End Learning of Loop Unrolling Heuristics for Abstract Interpretation">
+
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="𝐋𝐨𝐮𝐩𝐞 introduces a novel end-to-end learning approach that automatically learns effective loop unrolling heuristics using 𝐆𝐫𝐚𝐩𝐡 𝐍𝐞𝐮𝐫𝐚𝐥 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬 (𝐆𝐍𝐍𝐬) trained directly on program graphs.">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="loop unrolling, program analysis, machine learning, graph neural networks, AI">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="Maykel Mattar, Michele Alberti, Valentin Perrelle, Salah Sadou">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="CEA LIST Lab, Université Paris-Saclay, Université Bretagne Sud">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title" content="Loupe: End-to-End Learning of Loop Unrolling Heuristics for Abstract Interpretation">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description" content="𝐋𝐨𝐮𝐩𝐞 introduces a novel end-to-end learning approach that automatically learns effective loop unrolling heuristics using 𝐆𝐫𝐚𝐩𝐡 𝐍𝐞𝐮𝐫𝐚𝐥 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬 (𝐆𝐍𝐍𝐬) trained directly on program graphs.">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Loupe: End-to-End Learning of Loop Unrolling Heuristics for Abstract Interpretation - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Maykel Mattar">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="ABSTRACT_INTERPRETATION">
+  <meta property="article:tag" content="MACHINE_LEARNING">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <meta name="twitter:site" content="@cea_list">
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <meta name="twitter:creator" content="@MaykelMattar">
+  <!-- TODO: Same as paper title above -->
+  <meta name="twitter:title" content="Loupe: End-to-End Learning of Loop Unrolling Heuristics for Abstract Interpretation">
+  <!-- TODO: Same as description above -->
+  <meta name="twitter:description" content="𝐋𝐨𝐮𝐩𝐞 introduces a novel end-to-end learning approach that automatically learns effective loop unrolling heuristics using 𝐆𝐫𝐚𝐩𝐡 𝐍𝐞𝐮𝐫𝐚𝐥 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬 (𝐆𝐍𝐍𝐬) trained directly on program graphs.">
+  <!-- TODO: Same as social preview image above -->
+  <meta name="twitter:image" content="https://x.com/cea_list?lang=en">
+  <meta name="twitter:image:alt" content="Loupe: End-to-End Learning of Loop Unrolling Heuristics for Abstract Interpretation - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="Loupe: End-to-End Learning of Loop Unrolling Heuristics for Abstract Interpretation">
+  <meta name="citation_author" content="Mattar, Maykel">
+  <meta name="citation_author" content="Alberti, Michele"> 
+  <meta name="citation_author" content="Perrelle, Valentin">
+  <meta name="citation_author" content="Sadou, Salah">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_conference_title" content="40th IEEE/ACM International Conference on Automated Software Engineering, ASE 2025">
+  <meta name="citation_pdf_url" content="https://conf.researchr.org/details/ase-2025/ase-2025-papers/11/Loupe-End-to-End-Learning-of-Loop-Unrolling-Heuristics-for-Abstract-Interpretation">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>Loupe: End-to-End Learning of Loop Unrolling Heuristics for Abstract Interpretation - Mattar, Maykel | Academic Research</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "PAPER_TITLE",
+    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
+    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Loupe: End-to-End Learning of Loop
+Unrolling Heuristics for Abstract
+Interpretation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- TODO: Replace with your paper authors and their personal links -->
+              <span class="author-block">
+                <a href="https://orcid.org/0000-0001-6847-6177" target="_blank">Maykel Mattar</a><sup>1,2</sup>,</span>
+                <span class="author-block">
+                  <a href="https://orcid.org/0009-0001-4352-4555" target="_blank">Michele Alberti</a><sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://orcid.org/0009-0007-9637-8233" target="_blank">Valentin Perrelle</a><sup>1</sup>,
+                  </span>
+                                    <span class="author-block">
+                    <a href="https://orcid.org/0000-0001-8961-3142" target="_blank">Salah Sadou</a><sup>2</sup>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <!-- TODO: Replace with your institution and conference/journal info -->
+                    <span class="author-block">1. Université Paris-Saclay, CEA, List, Palaiseau, France<br>2. Université Bretagne Sud, IRISA, Vannes, France<br> 40th IEEE/ACM International Conference on Automated Software Engineering, ASE 2025</span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- TODO: Update with your arXiv paper ID -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+
+
+                  <!-- TODO: Replace with your GitHub repository URL -->
+ <span class="link-block">
+  <a href="https://doi.org/10.5281/zenodo.15559653" target="_blank"
+     class="external-link button is-normal is-rounded is-dark">
+    <span class="icon">
+      <img src="static/images/zenodo.svg" alt="Zenodo" style="width: 1em; height: 1em;">
+    </span>
+    <span>Zenodo</span>
+  </a>
+</span>
+         <span class="link-block">
+                  <a href="https://conf.researchr.org/details/ase-2025/ase-2025-papers/11/Loupe-End-to-End-Learning-of-Loop-Unrolling-Heuristics-for-Abstract-Interpretation" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+      <img src="static/images/Powerpoint.svg" alt="Slides" style="width: 1em; height: 1em;">
+                  </span>
+                  <span>Slides</span>
+                </a>
+              </span>
+                <!-- TODO: Update with your arXiv paper ID -->
+                <span class="link-block">
+                  <a href="https://conf.researchr.org/details/ase-2025/ase-2025-papers/11/Loupe-End-to-End-Learning-of-Loop-Unrolling-Heuristics-for-Abstract-Interpretation" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+      <img src="static/images/aseico.png" alt="Zenodo" style="width: 1em; height: 1em;">
+                  </span>
+                  <span>ASE2025</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- TODO: Replace with your teaser video -->
+         <img src="static/images/pipeline.png" alt="First research result visualization" loading="lazy"/>
+
+      <!-- TODO: Replace with your video description -->
+      <h2 class="subtitle has-text-centered">
+        Loupe: framework for end-to-end learning of heuristics from C codebases.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+                <h2 class="title is-3">Abstract</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            While static program analyzers based on abstract interpretation implement precision-improving techniques to reduce false alarms, such as loop unrolling, their computational cost requires carefully devised heuristics for selective application. Manually designing such heuristics is non-trivial and error-prone, possibly leading to state explosion.<br>
+This paper presents Loupe, a novel end-to-end approach for automatically learning loop unrolling heuristics for static program analysis. Unlike previous data-driven methods, Loupe leverages Graph Neural Networks (GNNs) to learn directly from graph-based program representations. To enable supervised learning, we use the static analyzer itself to automatically label training data. 
+We implement Loupe on top of Frama-C/EVA, an open source C static analyzer, and demonstrate that the best performing heuristic (GINE) outperforms the Frama-C/EVA built-in heuristic on real-world programs, reducing false alarms by 1.5x while improving analysis performance by 56%. Remarkably, GINE accurately predicts loop unrolling decisions made by expert Frama-C/EVA engineers, while maintaining acceptable false-positive rates. Finally, we show that Loupe can effectively learn heuristics for other static analyzers such as Mopsa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+            <h2 class="title is-3-left">Key Takeaways</h2>
+
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <div class="columns is-vcentered">
+            <div class="column is-half">
+              <!-- TODO: Replace with your research result images -->
+              <img src="static/images/res1.png" alt="First research result visualization" loading="lazy" style="width: 100%; height: 400px; object-fit: contain;"/>
+            </div>
+    <div class="column is-half">
+      <div class="content" style="padding: 2rem;">
+        <div>
+<ul style="font-size: 1.05rem; line-height: 2; list-style: none; margin-left: 0;">
+<li style="display: flex; align-items: start;">
+    <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+    <span><strong>Loupe (GINE)</strong> consistently outperforms all other approaches on both <strong>ANGHABENCH</strong> and <strong>OSCS</strong> across the <strong>F1</strong>, <strong>F2</strong>, and <strong>Balanced Accuracy (B-ACC)</strong> metrics.</span>
+</li>
+        <li style="display: flex; align-items: start;">
+        <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+        <span><strong>Loupe (GINE)</strong> significantly surpasses state-of-the-art vector-based methods on both <strong>ANGHABENCH</strong> and <strong>OSCS</strong>.</span>
+    </li>
+    <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+        <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+        <span><strong>Loupe (GINE)</strong> improves F2 by <strong>~6%</strong> and F1 by <strong>~8%</strong> over the best code language model, <strong>GraphCodeBERT</strong>.</span>
+    </li>
+
+</ul>
+        </div>
+      </div>
+    </div>
+          </div>
+        </div>
+        
+<div class="item">
+  <div class="columns is-vcentered">
+    <div class="column is-half">
+      <img src="static/images/res2.png" alt="Second research result visualization" loading="lazy" style="width: 100%; height: 400px; object-fit: contain;"/>
+    </div>
+    <div class="column is-half">
+      <div class="content" style="padding: 2rem;">
+<div>
+          <ul style="font-size: 1.05rem; line-height: 2; list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Matches <strong>~67%</strong> of alarms reduced by ⊤, <strong>7.5× faster</strong>, and with <strong>5× lower TO</strong></span>
+            </li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Reduces around <strong>35%</strong> of alarms compared to ⊥</span>
+            </li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Outperforms or matches Alu-100 <strong>87%</strong> of the time with almost <strong>half the time</strong></span>
+            </li>
+            <li style="display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Aligns with <strong>51 out of 63</strong> manually labeled unrolling decisions (<strong>81%</strong>)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="item">
+          <div class="columns is-vcentered">
+            <div class="column is-half">
+              <img src="static/images/res3.png" alt="Third research result visualization" loading="lazy" style="width: 100%; height: 400px; object-fit: contain;"/>
+            </div>
+    <div class="column is-half">
+      <div class="content" style="padding: 2rem;">
+                <div>
+          <ul style="font-size: 1.05rem; line-height: 2; list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span> The learned model achieves <strong>consistent efficiency</strong> while maintaining <strong>high precision.</strong></span>
+            </li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Loupe (GINE) provides the <strong> superior balance </strong></span>
+            </li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Loupe (GINE) <strong>outperforms</strong> the built-in heuristic even at its <strong>extreme settings</strong></span>
+            </li>
+
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+          </div>
+        </div>
+        
+        <div class="item">
+          <div class="columns is-vcentered">
+            <div class="column is-half">
+              <img src="static/images/res4.png" alt="Fourth research result visualization" loading="lazy" style="width: 100%; height: 400px; object-fit: contain;"/>
+            </div>
+    <div class="column is-half">
+      <div class="content" style="padding: 2rem;">
+        <div>
+          <ul style="font-size: 1.05rem; line-height: 2; list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Alarm reduction trends remain <strong>uniform and predictable</strong></span>
+            </li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Loupe (GINE) <strong>consistently outperforms</strong> the built-in Alu heuristic in total alarm count on <strong>all configurations</strong></span>
+            </li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>The <strong>absence of anomalies</strong> confirms the approach's <strong>robustness and scalability</strong> across varied configurations.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="columns is-vcentered">
+            <div class="column is-half">
+              <img src="static/images/res5.png" alt="Fifth research result visualization" loading="lazy" style="width: 100%; height: 400px; object-fit: contain;"/>
+            </div>
+    <div class="column is-half">
+      <div class="content" style="padding: 2rem;">
+        <div>
+          <ul style="font-size: 1.05rem; line-height: 2; list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Loupe (GINE) trained on Frama-C/EVA data <strong>improved performance</strong> when applied to MOPSA</span>
+            </li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>Retraining Loupe (GINE) for MOPSA achieved <strong>75%</strong> of ⊤’s alarm reduction</span>
+            </li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: start;">
+              <span style="color: #48c774; font-size: 1.5rem; margin-right: 0.75rem; line-height: 1;">✓</span>
+              <span>The MOPSA-specific model was <strong>6.5x faster</strong> than the ⊤ strategy</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End image carousel -->
+
+
+
+
+<!-- Youtube video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3-left">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video">
+            <!-- TODO: Replace with your YouTube video ID -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jNQXAC9IVRw?si=TbsrdGs5eTChmCU6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{Loupe2024,
+  title={Loupe: End-to-End Learning of Loop Unrolling Heuristics for Abstract Interpretation},
+  author={Mattar, Maykel and Alberti, Michele and Perrelle, Valentin and Sadou, Salah},
+  journal={40th IEEE/ACM International Conference on Automated Software Engineering, ASE 2025},
+  year={2025},
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+<footer class="footer has-text-centered">
+  <div class="container">
+    <span 
+      class="icon has-tooltip-multiline" 
+      data-tooltip="This page was built using the Academic Project Page Template (by Eliahu Horwitz) adapted from Nerfies. Licensed under CC BY-SA 4.0.">
+      <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">
+        <i class="fas fa-info-circle"></i>
+      </a>
+    </span>
+  </div>
+</footer>
+
+<!-- Include Font Awesome (if not already in your page) -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- Optional Bulma tooltip extension -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-tooltip@3.0.2/dist/css/bulma-tooltip.min.css">
+
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
