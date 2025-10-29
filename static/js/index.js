@@ -131,6 +131,12 @@ $(document).ready(function() {
         pagination:true,
         navigationKeys:true,
       navigationSwipe:true,  
+           breakpoints: [
+            { changePoint: 0, slidesToShow: 1, slidesToScroll: 1 },
+            { changePoint: 480, slidesToShow: 1, slidesToScroll: 1 },
+            { changePoint: 640, slidesToShow: 1, slidesToScroll: 1 },
+            { changePoint: 768, slidesToShow: 1, slidesToScroll: 1 }
+        ]
     }
 
 	// Initialize all div with carousel class
